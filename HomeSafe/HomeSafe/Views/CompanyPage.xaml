@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeSafe.Views.CompanyPage"
+             BackgroundColor="#222222"
+             Title="Company">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sign Out" Clicked="SignOutBtnClicked" />
+    </ContentPage.ToolbarItems>
+    <StackLayout VerticalOptions="StartAndExpand"
+                 Padding="32, 16, 32, 16">
+        <ListView x:Name="companyList"
+                  HasUnevenRows="true"
+                  ItemSelected="SelectBtnClicked">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="FillAndExpand"
+                                     Orientation="Horizontal"
+                                     BackgroundColor="#666666"
+                                     Padding="8, 8, 8, 8"
+                                     Margin="0, 8, 0, 8">
+                            <Label Text="{Binding Name}"
+                                   TextColor="#EEEEEE"
+                                   FontSize="Large" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

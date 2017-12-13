@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeSafe.Views.LoginPage"
+             BackgroundColor="#222222"
+             Title="Sign In">
+    <StackLayout VerticalOptions="StartAndExpand"
+                 Padding="32, 16, 32, 16">
+        <Entry x:Name="userName"
+               Keyboard="Text"
+               Placeholder="Username"
+               BackgroundColor="#EEEEEE" />
+        <Entry x:Name="userPwd"
+               IsPassword="true"
+               Placeholder="Password"
+               BackgroundColor="#EEEEEE" />
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <Button Text="Submit"
+                    Clicked="LoginBtnClicked"
+                    BackgroundColor="#666666" />
+            <Label x:Name="messageLabel"
+                   HorizontalOptions="Center"
+                   TextColor="#FF0000" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

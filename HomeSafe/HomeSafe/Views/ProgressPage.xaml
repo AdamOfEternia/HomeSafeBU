@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeSafe.Views.ProgressPage"
+             BackgroundColor="#222222"
+             Title="Travel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sign Out" Clicked="SignOutBtnClicked" />
+    </ContentPage.ToolbarItems>
+    <StackLayout VerticalOptions="StartAndExpand"
+                 Padding="32, 16, 32, 16">
+        <Grid>
+            <Button x:Name="leftHomeBtn"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Left Home"
+                    BackgroundColor="#666666"
+                    Clicked="LeftHomeBtnClicked" />
+            <Button x:Name="arrivedSiteBtn"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Arrived at Site"
+                    BackgroundColor="#666666"
+                    Clicked="ArrivedSiteBtnClicked" />
+            <Button x:Name="leftSiteBtn"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Left Site"
+                    BackgroundColor="#666666"
+                    Clicked="LeftSiteBtnClicked" />
+            <Button x:Name="arrivedHomeBtn"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Arrived Home"
+                    BackgroundColor="#666666"
+                    Clicked="ArrivedHomeBtnClicked" />
+        </Grid>
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     Padding="0, 8, 0, 8">
+            <Button Text="Contact Control Centre"
+                    Clicked="ControlCentreBtnClicked"
+                    BackgroundColor="#FF0000"
+                    TextColor="#EEEEEE"/>
+        </StackLayout>
+        <ListView x:Name="progressList"
+                  HasUnevenRows="true"
+                  ItemSelected="SelectBtnClicked">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Time}"
+                                   TextColor="#EEEEEE"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large" />
+                            <Label Text="{Binding Status}"
+                                   TextColor="#EEEEEE"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Header>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Progress"
+                            TextColor="#EEEEEE"
+                            FontAttributes="Bold"
+                            FontSize="Large" />
+                </StackLayout>
+            </ListView.Header>
+        </ListView>
+    </StackLayout>
+</ContentPage>
