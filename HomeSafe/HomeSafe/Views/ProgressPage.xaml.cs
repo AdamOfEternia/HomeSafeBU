@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 
 namespace HomeSafe.Views
 {
@@ -24,6 +26,11 @@ namespace HomeSafe.Views
         public ProgressPage(int companyId)
         {
             InitializeComponent();
+
+            if (!CrossGeolocator.IsSupported)
+            {
+                DisplayAlert("Warning!", "Cross Geolocator is NOT supported", "Ok");
+            }
 
             _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
             _companyId = companyId;
@@ -96,6 +103,31 @@ namespace HomeSafe.Views
             DateTime now = DateTime.Now;
             string t = now.ToString(@"HH\:mm");
             string d = now.ToString("dd-MM-yyyy");
+            double lng = 0d;
+            double lat = 0d;
+            Position position = null; 
+
+            try
+            {
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 50;
+
+                if (locator.IsGeolocationAvailable)
+                {
+                    position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
+
+                    lng = position.Longitude;
+                    lat = position.Latitude;
+                }
+                else
+                {
+                    await DisplayAlert("Warning!", "Location unavailable", "Ok");
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
 
             Progress progress = new Progress
             {
@@ -104,8 +136,8 @@ namespace HomeSafe.Views
                 Time = t,
                 Status = status,
                 CompanyId = _companyId,
-                Latitude = 53.410372499999994,
-                Longitude = -1.316899
+                Latitude = lat,
+                Longitude = lng
             };
 
             await _connection.InsertAsync(progress);

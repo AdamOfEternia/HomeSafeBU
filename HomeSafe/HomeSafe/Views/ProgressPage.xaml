@@ -48,33 +48,35 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Time}"
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Time}"
                                    TextColor="#EEEEEE"
                                    HorizontalTextAlignment="Start"
                                    FontSize="Large" />
-                            <Label Text="{Binding Status}"
+                                <Label Text="{Binding Status}"
                                    TextColor="#EEEEEE"
                                    HorizontalTextAlignment="Start"
                                    FontSize="Large" />
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Id}"
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Id}"
                                    TextColor="#EEEEEE"
                                    HorizontalTextAlignment="Start"
                                    FontSize="Large" />
-                            <Label Text="{Binding CompanyId}"
+                                <Label Text="{Binding CompanyId}"
                                    TextColor="#EEEEEE"
                                    HorizontalTextAlignment="Start"
                                    FontSize="Large" />
-                            <Label Text="{Binding Latitude}"
+                                <Label Text="{Binding Latitude}"
                                    TextColor="#EEEEEE"
                                    HorizontalTextAlignment="Start"
                                    FontSize="Large" />
-                            <Label Text="{Binding Longitude}"
+                                <Label Text="{Binding Longitude}"
                                    TextColor="#EEEEEE"
                                    HorizontalTextAlignment="Start"
                                    FontSize="Large" />
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
