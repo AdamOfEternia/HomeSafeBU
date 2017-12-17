@@ -14,14 +14,22 @@ namespace HomeSafe
 
         public App()
         {
+            Page p;
+
             if (!IsUserLoggedIn)
             {
-                MainPage = new NavigationPage(new LoginPage());
+                p = new LoginPage();
             }
             else
             {
-                MainPage = new NavigationPage(new CompanyPage());
+                p = new CompanyPage();
             }
+
+            MainPage = new NavigationPage(p)
+            {
+                BarBackgroundColor = Color.FromHex("#222222"),
+                BarTextColor = Color.FromHex("#EEEEEE")
+            };
         }
 
         protected override void OnStart ()

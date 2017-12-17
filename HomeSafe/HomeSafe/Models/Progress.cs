@@ -11,6 +11,12 @@ namespace HomeSafe.Models
 {
     public class Progress : INotifyPropertyChanged
     {
+        public static string PROGRESS_LEFT_HOME = "Left Home";
+        public static string PROGRESS_ARRIVED_AT_SITE = "Arrived at Site";
+        public static string PROGRESS_LEFT_SITE = "Left Site";
+        public static string PROGRESS_ARRIVED_HOME = "Left Arrived Home";
+        public static string PROGRESS_CONTACTED_CONTROL_CENTRE = "** CONTACTED CONTROL CENTRE **";
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string _date;

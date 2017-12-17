@@ -58,6 +58,24 @@
                                    HorizontalTextAlignment="Start"
                                    FontSize="Large" />
                         </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Id}"
+                                   TextColor="#EEEEEE"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large" />
+                            <Label Text="{Binding CompanyId}"
+                                   TextColor="#EEEEEE"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large" />
+                            <Label Text="{Binding Latitude}"
+                                   TextColor="#EEEEEE"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large" />
+                            <Label Text="{Binding Longitude}"
+                                   TextColor="#EEEEEE"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large" />
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

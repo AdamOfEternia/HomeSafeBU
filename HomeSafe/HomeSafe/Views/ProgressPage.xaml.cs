@@ -63,22 +63,22 @@ namespace HomeSafe.Views
 
         private void LeftHomeBtnClicked(object sender, EventArgs e)
         {
-            UpdateProgress("Left Home");
+            UpdateProgress(Progress.PROGRESS_LEFT_HOME);
         }
 
         private void ArrivedSiteBtnClicked(object sender, EventArgs e)
         {
-            UpdateProgress("Arrived at Site");
+            UpdateProgress(Progress.PROGRESS_ARRIVED_AT_SITE);
         }
 
         private void LeftSiteBtnClicked(object sender, EventArgs e)
         {
-            UpdateProgress("Left Site");
+            UpdateProgress(Progress.PROGRESS_LEFT_SITE);
         }
 
         private void ArrivedHomeBtnClicked(object sender, EventArgs e)
         {
-            UpdateProgress("Arrived Home");
+            UpdateProgress(Progress.PROGRESS_ARRIVED_HOME);
         }
 
         private void SelectBtnClicked(object sender, SelectedItemChangedEventArgs e)
@@ -88,13 +88,13 @@ namespace HomeSafe.Views
 
         private void ControlCentreBtnClicked(object sender, EventArgs e)
         {
-            UpdateProgress("** CONTACTED CONTROL CENTRE **");
+            UpdateProgress(Progress.PROGRESS_CONTACTED_CONTROL_CENTRE);
         }
 
         async private void UpdateProgress(string status)
         {
             DateTime now = DateTime.Now;
-            string t = now.ToString(@"hh\:mm");
+            string t = now.ToString(@"HH\:mm");
             string d = now.ToString("dd-MM-yyyy");
 
             Progress progress = new Progress
