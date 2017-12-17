@@ -22,6 +22,7 @@ namespace HomeSafe.Views
         private ObservableCollection<Progress> _progressUpdates;
         private bool _isDataLoaded = false;
         private int _companyId;
+        private bool _recordLocation = true;
 
         public ProgressPage(int companyId)
         {
@@ -29,7 +30,8 @@ namespace HomeSafe.Views
 
             if (!CrossGeolocator.IsSupported)
             {
-                DisplayAlert("Warning!", "Cross Geolocator is NOT supported", "Ok");
+                DisplayAlert("Warning!", "Geolocator is not supported on the current platform.  Location will not be recorded in your progress updates.", "Ok");
+                _recordLocation = false;
             }
 
             _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
@@ -105,28 +107,33 @@ namespace HomeSafe.Views
             string d = now.ToString("dd-MM-yyyy");
             double lng = 0d;
             double lat = 0d;
-            Position position = null; 
+            Position position = null;
 
-            try
+            if (_recordLocation)
             {
-                var locator = CrossGeolocator.Current;
-                locator.DesiredAccuracy = 50;
-
-                if (locator.IsGeolocationAvailable)
+                try
                 {
-                    position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
+                    var locator = CrossGeolocator.Current;
+                    locator.DesiredAccuracy = 50;
 
-                    lng = position.Longitude;
-                    lat = position.Latitude;
+                    if (!locator.IsGeolocationAvailable || !locator.IsGeolocationEnabled)
+                    {
+                        await DisplayAlert("Warning!", "Location services are not enabled on your device or information is unavailable.  Please enable and try again later.", "Ok");
+                        return;
+                    }
+                    else
+                    {
+                        position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
+
+                        lng = position.Longitude;
+                        lat = position.Latitude;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    await DisplayAlert("Warning!", "Location unavailable", "Ok");
+                    await DisplayAlert("Warning!", "Location information is unavailable.  Please retry again later.", "Ok");
+                    return;
                 }
-            }
-            catch (Exception e)
-            {
-
             }
 
             Progress progress = new Progress
